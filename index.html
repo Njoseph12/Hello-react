@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello,React</title>
+    <title>simple counter</title>
   </head>
   <body>
     <div id="root"></div>
@@ -19,11 +19,23 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
     <script type="text/babel">
-      function Welcome(props) {
-        return <h1>Welcome</h1>;
+      class Counter extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            count: 0,
+          };
+        }
+        render() {
+          setTimeout(() => {
+            this.setState((state, props) => ({
+              count: state.count + 1,
+            }));
+          }, 1000);
+          return <div>{this.state.count}</div>;
+        }
       }
-      const element = <h1>Hello,JSX</h1>;
-      ReactDOM.render(<Welcome />, document.getElementById("root"));
+      ReactDOM.render(<Counter />, document.getElementById("root"));
     </script>
   </body>
 </html>
